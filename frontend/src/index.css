@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-slate-200/60;
+  }
+
+  body {
+    @apply font-sans text-[#0F172A] bg-[#F8FAFC] antialiased;
+  }
+}
+
+@layer utilities {
+  /* Subtle noise/grid background pattern */
+  .bg-noise {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Radial gradient blobs for background decoration */
+  .blob-blue {
+    background: radial-gradient(circle 600px at 10% 20%, rgba(37, 99, 235, 0.08), transparent 70%);
+  }
+
+  .blob-violet {
+    background: radial-gradient(circle 500px at 90% 10%, rgba(124, 58, 237, 0.07), transparent 70%);
+  }
+
+  .blob-cyan {
+    background: radial-gradient(circle 500px at 80% 80%, rgba(6, 182, 212, 0.06), transparent 70%);
+  }
+
+  .blob-blue-sm {
+    background: radial-gradient(circle 300px at 15% 30%, rgba(37, 99, 235, 0.10), transparent 60%);
+  }
+
+  .blob-violet-sm {
+    background: radial-gradient(circle 250px at 85% 15%, rgba(124, 58, 237, 0.08), transparent 60%);
+  }
+
+  .blob-cyan-sm {
+    background: radial-gradient(circle 250px at 75% 85%, rgba(6, 182, 212, 0.07), transparent 60%);
+  }
+
+  /* Animated gradient orb for loading states */
+  @keyframes orb-rotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.15); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  .animate-orb {
+    animation: orb-rotate 4s ease-in-out infinite;
+  }
+
+  /* Pulse dots for loading text */
+  @keyframes pulse-dot {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-dot {
+    animation: pulse-dot 1.4s ease-in-out infinite both;
+  }
+
+  .animate-dot:nth-child(1) { animation-delay: -0.32s; }
+  .animate-dot:nth-child(2) { animation-delay: -0.16s; }
+  .animate-dot:nth-child(3) { animation-delay: 0s; }
+
+  /* Skeleton shimmer animation */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  /* Score ring fill animation */
+  @keyframes fill-ring {
+    from { stroke-dashoffset: var(--circumference); }
+    to { stroke-dashoffset: var(--target-offset); }
+  }
+}
