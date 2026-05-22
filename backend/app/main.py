@@ -12,7 +12,13 @@ from app.routers import practice, admin
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
+frontend_origin = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
+
+allowed_origins = [
+    origin.strip()
+    for origin in frontend_origin.split(",")
+    if origin.strip()
+]
 
 
 def init_database():
@@ -52,7 +58,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_ORIGIN],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
